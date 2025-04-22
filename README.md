@@ -1,5 +1,5 @@
 
-# 📦 eKanister – Master Thesis Repository
+# eKanister – Master Thesis Repository
 
 **Title:** Portable Energy Storage System for Emergency Charging of Electric Vehicles  
 **Author:** Michał Makowski  
@@ -8,79 +8,46 @@
 **Field of Study:** Electromobility  
 **Year:** 2025
 
----
+## Abstract
 
-## 📘 Abstract
+This repository supports a Master's thesis focused on the design and implementation of a portable energy storage system—eKanister—for emergency charging of electric vehicles. The work combines theoretical analysis with practical application in the field of power electronics. Key components include a Dual Active Bridge (DAB), a phase-locked loop (PLL)-based active rectifier, and a full-bridge inverter. The control software was implemented on a Texas Instruments TMS320F28335 DSP and tested using a Hardware-in-the-Loop (HIL) setup.
 
-This repository contains the complete implementation, simulation, and codebase for the master thesis project titled **"eKanister"**, a portable emergency charging solution for electric vehicles. The system integrates modern power electronics such as Dual Active Bridge (DAB), Phase-Locked Loop (PLL)-based active rectifiers, and full-bridge inverters. The control algorithms are implemented for the Texas Instruments DSP `TMS320F28335`, tested under Hardware-in-the-Loop (HIL) conditions using the PLECS RT Box.
+## Key Components
 
----
+### Power Electronics
 
-## 📂 Repository Structure
+- **Dual Active Bridge (DAB):** Used for high-efficiency bidirectional DC-DC power conversion with galvanic isolation.
+- **Active Rectifier with PLL:** Synchronizes with grid phase and reduces harmonic distortion.
+- **Full-Bridge Inverter:** Converts DC to AC for compatibility with standard electric vehicle charging.
 
-```
-.
-├── DAB_Inverter.plecs                        # PLECS model of DAB inverter
-├── DAB_Active_Rectifier_Grid_to_Bank_TRANSFER.plecs  # PLECS model for active rectifier
-├── DAB_PLOT.m                                # MATLAB script to visualize input/output voltages
-├── INVERTER_FINAL.c                          # Full-bridge inverter control code for DSP
-├── PLL_UNIPOLAR_NEW_FINAL.c                  # PLL-based active rectifier control code for DSP
-├── F28335_controlCARD_ZJZ_Schematic_[R2.2].pdf # TI controlCARD hardware schematic
-├── Magisterka_druk.pdf                       # Full thesis PDF (in Polish and English abstract)
-└── README.md                                 # Project overview and guidance
-```
+### Control and Testing
 
----
+- Control algorithms were implemented in C and tested on a TMS320F28335 DSP.
+- MATLAB was used for plotting and visualizing system outputs.
+- Real-time simulations were conducted using a PLECS model and verified with an RT Box HIL platform.
 
-## ⚙️ Key Components
+## Simulation and Visualization
 
-### 🔌 Power Converter Topologies
-- **Dual Active Bridge (DAB):** Enables bidirectional energy conversion with galvanic isolation.
-- **Active Rectifier with PLL:** Allows synchronization with grid phase, reducing harmonics and improving power factor.
-- **Full-Bridge Inverter:** Converts DC from storage to AC output compatible with standard EV chargers.
+The MATLAB script `DAB_PLOT.m` provides a comparison between setpoint and measured output voltage for the DAB converter. It requires the CSV files `data_DAB_solo.csv` and `data_DAB_solo_input.csv` to be in the same directory.
 
-### 🎯 Control Implementation
-- **Controller Platform:** TI TMS320F28335 DSP
-- **Modulation Techniques:** Unipolar PWM for inverters, Phase Shift Modulation for DAB
-- **PLL Design:** Synchronizes input AC phase for rectifier stability
+## Thesis Focus Areas
 
-### 🧪 Simulation & Testing
-- **Simulation Tool:** PLECS (modeling of DAB and active rectifier)
-- **Hardware-in-the-Loop (HIL):** RT Box 1 used to validate real-time control performance
-- **Visualization:** MATLAB used for signal plotting and verification
+- Analysis and selection of electrochemical cells (18650 Molicel P30B vs. 21700 LG M50).
+- Battery pack design to support emergency driving range (around 20 km).
+- Efficiency-focused design of converters and control algorithms.
+- System validation using real-time simulation and experimental results.
 
----
+## Requirements
 
-## 📈 Example Plot
+**Software:**
+- MATLAB
+- PLECS Standalone
+- Code Composer Studio
 
-The MATLAB script `DAB_PLOT.m` visualizes the comparison between the setpoint input voltage and the measured DAB output voltage. Make sure you have the CSV files `data_DAB_solo.csv` and `data_DAB_solo_input.csv` in the working directory.
+**Hardware:**
+- TI ControlCARD TMS320F28335
+- RT Box 1 (for HIL testing)
 
----
+## License
 
-## 📑 Thesis Highlights
-
-- **Cell Selection Analysis:** Compared 18650 Molicel P30B and 21700 LG M50 for energy density, weight, and power delivery.
-- **Target Output Power:** ~7.68 kW AC via onboard charger equivalent.
-- **Emergency Use Case:** Enables EVs to drive up to 20 km to reach the next charging station.
-- **Compact & Portable:** Final battery pack configuration: 14S21P of LG M50 cells (~25 kg total mass).
-
-> Detailed design choices, safety considerations, and HIL testing results are found in `Magisterka_druk.pdf`.
-
----
-
-## 🛠 Requirements
-
-- **Software:**  
-  - PLECS Standalone (for simulation)  
-  - MATLAB (for plotting)  
-  - Code Composer Studio (for DSP programming)
-
-- **Hardware:**  
-  - TI ControlCARD TMS320F28335  
-  - RT Box 1 for HIL testing
-
----
-
-## 📜 License
-
-This repository is part of a university thesis project. If you wish to use or extend the work, please contact the author for permission.
+This repository contains original work submitted as part of a university thesis. For academic or commercial reuse, please contact the author.
